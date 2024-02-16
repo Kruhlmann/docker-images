@@ -1,6 +1,5 @@
 ARG DEBIAN_VERSION=bookworm
 ARG PYTHON_VERSION
-LABEL maintainer="Kruhlmann"
 
 FROM cr.kruhlmann.dev/debian:${DEBIAN_VERSION}
 
@@ -34,4 +33,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && curl https://pyenv.run | bash \
     && pyenv install ${PYTHON_VERSION} \
-    && pyenv global ${PYTHON_VERSION}
+    && pyenv global ${PYTHON_VERSION} \
+    && pyenv virtualenv venv \
+    && chown -R $USERNAME:$USERNAME /home/$USERNAME \
+    && ln -sf $HOME/.pyenv/versions/venv $VENV
+
