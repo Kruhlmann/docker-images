@@ -21,10 +21,10 @@ jobs:
         run: >
           docker build . \
             -f Dockerfile \
-            -t cr.kruhlmann.dev/debian:${DEBIAN_VERSION} \
-            --build-arg DEBIAN_VERSION=${DEBIAN_VERSION} \
+            -t cr.kruhlmann.dev/debian:${{ matrix.DEBIAN_VERSION }} \
+            --build-arg DEBIAN_VERSION=${{ matrix.DEBIAN_VERSION }} \
       - name: Publish base image
-        run: docker push cr.kruhlmann.dev/debian:${DEBIAN_VERSION}
+        run: docker push cr.kruhlmann.dev/debian:${{ matrix.DEBIAN_VERSION }}
 
 
   build-python-images:
@@ -51,8 +51,8 @@ jobs:
         run: >
           docker build . \
             -f python.Dockerfile \
-            -t cr.kruhlmann.dev/debian-${DEBIAN_VERSION}-python-${PYTHON_VERSION} \
-            --build-arg DEBIAN_VERSION=${DEBIAN_VERSION} \
-            --build-arg PYTHON_VERSION=${PYTHON_VERSION} \
+            -t cr.kruhlmann.dev/debian-${{ matrix.DEBIAN_VERSION}-python-${{ matrix.PYTHON_VERSION}} \
+            --build-arg DEBIAN_VERSION=${{ matrix.DEBIAN_VERSION} \
+            --build-arg PYTHON_VERSION=${{ matrix.PYTHON_VERSION} \
       - name: Publish python image
-        run: docker push cr.kruhlmann.dev/debian-${DEBIAN_VERSION}-python-${PYTHON_VERSION}
+        run: docker push cr.kruhlmann.dev/debian-${{ matrix.DEBIAN_VERSION }}-python-${{ matrix.PYTHON_VERSION }}
