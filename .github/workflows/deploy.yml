@@ -9,7 +9,6 @@ jobs:
       matrix:
         DEBIAN_VERSION:
           - bookworm
-          - buster
     steps:
       - uses: actions/checkout@master
       - uses: azure/docker-login@v1
@@ -34,7 +33,6 @@ jobs:
       matrix:
         DEBIAN_VERSION:
           - bookworm
-          - buster
         PYTHON_VERSION:
           - 3.8
           - 3.9
