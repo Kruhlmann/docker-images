@@ -19,10 +19,10 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build base image
         run: >
-          docker build . 
-            -f Dockerfile
-            -t cr.kruhlmann.dev/debian:${DEBIAN_VERSION}
-            --build-arg DEBIAN_VERSION=${DEBIAN_VERSION}
+          docker build . \
+            -f Dockerfile \
+            -t cr.kruhlmann.dev/debian:${DEBIAN_VERSION} \
+            --build-arg DEBIAN_VERSION=${DEBIAN_VERSION} \
       - name: Publish base image
         run: docker push cr.kruhlmann.dev/debian:${DEBIAN_VERSION}
 
@@ -49,10 +49,10 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build python image
         run: >
-          docker build .
-            -f python.Dockerfile
-            -t cr.kruhlmann.dev/debian-${DEBIAN_VERSION}-python-${PYTHON_VERSION}
-            --build-arg DEBIAN_VERSION=${DEBIAN_VERSION}
-            --build-arg PYTHON_VERSION=${PYTHON_VERSION}
+          docker build . \
+            -f python.Dockerfile \
+            -t cr.kruhlmann.dev/debian-${DEBIAN_VERSION}-python-${PYTHON_VERSION} \
+            --build-arg DEBIAN_VERSION=${DEBIAN_VERSION} \
+            --build-arg PYTHON_VERSION=${PYTHON_VERSION} \
       - name: Publish python image
         run: docker push cr.kruhlmann.dev/debian-${DEBIAN_VERSION}-python-${PYTHON_VERSION}
