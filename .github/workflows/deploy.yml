@@ -34,10 +34,10 @@ jobs:
         DEBIAN_VERSION:
           - bookworm
         PYTHON_VERSION:
-          - 3.8
-          - 3.9
-          - 3.10
-          - 3.11
+          - "3.8"
+          - "3.9"
+          - "3.10"
+          - "3.11"
     steps:
       - uses: actions/checkout@master
       - uses: azure/docker-login@v1
