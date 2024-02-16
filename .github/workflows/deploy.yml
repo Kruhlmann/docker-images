@@ -3,7 +3,7 @@ on:
   push:
 
 jobs:
-  publish-base-images:
+  publish-base-image:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -26,7 +26,7 @@ jobs:
         run: docker push cr.kruhlmann.dev/debian:${{ matrix.DEBIAN_VERSION }}
 
 
-  build-python-images:
+  build-python-image:
     needs: publish-base-images
     runs-on: ubuntu-latest
     strategy:
