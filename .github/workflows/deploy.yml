@@ -54,3 +54,30 @@ jobs:
             --build-arg PYTHON_VERSION=${{ matrix.PYTHON_VERSION }} \
       - name: Publish python image
         run: docker push cr.kruhlmann.dev/debian-${{ matrix.DEBIAN_VERSION }}-python-${{ matrix.PYTHON_VERSION }}
+
+  build-ocaml-image:
+    needs: publish-base-images
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        DEBIAN_VERSION:
+          - bookworm
+        OCAML_VERSION:
+          - "4.14.0"
+          - "5.1.1"
+    steps:
+      - uses: actions/checkout@master
+      - uses: azure/docker-login@v1
+        with:
+          login-server: cr.kruhlmann.dev
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Build ocaml image
+        run: >
+          docker build . \
+            -f ocaml.Dockerfile \
+            -t cr.kruhlmann.dev/debian-${{ matrix.DEBIAN_VERSION }}-ocaml-${{ matrix.OCAML_VERSION }} \
+            --build-arg DEBIAN_VERSION=${{ matrix.DEBIAN_VERSION }} \
+            --build-arg OCAML_VERSION=${{ matrix.OCAML_VERSION }} \
+      - name: Publish ocaml image
+        run: docker push cr.kruhlmann.dev/debian-${{ matrix.DEBIAN_VERSION }}-ocaml-${{ matrix.OCAML_VERSION }}
