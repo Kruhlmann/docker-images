@@ -3,7 +3,7 @@ on:
   push:
 
 jobs:
-  publish-base-image:
+  publish-base-images:
     runs-on: ubuntu-latest
     strategy:
       matrix:
