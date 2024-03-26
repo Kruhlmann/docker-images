@@ -25,7 +25,7 @@ RUN eval $(opam env) \
 
 ## Python
 
-Example usage
+Example usage:
 
 ```Dockerfile
 ARG PYTHON_VERSION=3.11
