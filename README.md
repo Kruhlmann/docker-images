@@ -20,7 +20,7 @@ COPY ./lib ./lib
 
 RUN eval $(opam env) \
     && opam install . --yes --deps-only \
-    && dune build @install 
+    && make
 ```
 
 ## Python
