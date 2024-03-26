@@ -17,5 +17,8 @@ RUN apt-get update \
         git \
         build-essential \
     && rm -rf /var/lib/apt/lists/* \
-    && opam init -y --compiler=${OCAML_VERSION} --disable-sandboxing
-
+    && opam init -y --disable-sandboxing \
+    && opam switch create ocaml-base-compiler ${OCAML_VERSION} \
+    && opam install dune \
+    && rm -rf /root/.opam \
+    && chown -R $USERNAME /home/$USERNAME

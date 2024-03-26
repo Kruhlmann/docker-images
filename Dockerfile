@@ -11,4 +11,5 @@ RUN apt-get update \
     && apt-get install --assume-yes --no-install-recommends \
         locales \
     && localedef -i en_US -f UTF-8 en_US.UTF-8 \
-    && useradd -m --shell /bin/bash -u 1000 $USERNAME
+    && useradd -m --shell /bin/bash -u 1000 $USERNAME \
+    && chown -R $USERNAME:$USERNAME $HOME
