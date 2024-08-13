@@ -44,3 +44,4 @@ USER $USERNAME
 WORKDIR /home/$USERNAME
 ENTRYPOINT ["my_bin"]
 ```
+
